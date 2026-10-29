@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mevzuat Uyumluluk Tarama Raporu</title>
+<style>
+body { font: 16px/1.6 system-ui, sans-serif; max-width: 1000px; margin: 40px auto; padding: 0 20px; color: #172033; background: #f5f7fb; }
+header, section, article { background: white; border: 1px solid #e1e6ef; border-radius: 12px; padding: 20px; margin: 16px 0; }
+h1, h2 { color: #16345c; }
+.summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px 20px; }
+.notice { background: #fff4d6; border-left: 4px solid #d99a00; padding: 12px; }
+table { border-collapse: collapse; width: 100%; overflow-wrap: anywhere; }
+th, td { text-align: left; vertical-align: top; border-bottom: 1px solid #e1e6ef; padding: 10px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; background: #f1f4f9; padding: 12px; border-radius: 8px; }
+code { overflow-wrap: anywhere; }
+</style>
+</head>
+<body>
+<header>
+<h1>Mevzuat Uyumluluk Tarama Raporu</h1>
+<div class="summary">
+<div><strong>Depo:</strong> demo2</div>
+<div><strong>Dal / commit:</strong> test-fixture</div>
+<div><strong>Model:</strong> synthetic-fixture</div>
+<div><strong>Kapsam:</strong> Sentetik test verisi; yalnızca test akışı</div>
+<div><strong>Tarih:</strong> 2026-10-29T00:00:00+00:00</div>
+<div><strong>İncelenen dosya:</strong> 1 / 1</div>
+<div><strong>Doğrulanmış bulgu:</strong> 5</div>
+</div>
+<p>Bu otomatik rapordaki bulguları uygulamadan önce kodu ve mevzuat kaynağını uzmanla doğrulayın.</p>
+</header>
+<section><h2>Bulgular</h2><article class="finding"><h3>HIGH: Desteklenmeyen para birimleri kabul ediliyor</h3><p><strong>Konum:</strong> <code>payment_rules.py:9</code> · <strong>Güven:</strong> 10/10</p><p><strong>Mevzuat:</strong> TEST_FIXTURE_NOT_LAW, sayfa 1</p><p>İşlev izin verilen para birimi listesini kullanmıyor.</p><p><strong>Öneri:</strong> Para biriminin desteklenenler kümesinde olup olmadığını denetleyin.</p><pre><code>    return True</code></pre></article><article class="finding"><h3>MEDIUM: Yeniden deneme sınırı bir fazla kabul ediliyor</h3><p><strong>Konum:</strong> <code>payment_rules.py:14</code> · <strong>Güven:</strong> 9/10</p><p><strong>Mevzuat:</strong> TEST_FIXTURE_NOT_LAW, sayfa 1</p><p>Deneme sayısı sınıra eşit olduğunda yeni denemeye izin veriliyor.</p><p><strong>Öneri:</strong> Yeni deneme için mevcut deneme sayısının sınırdan küçük olmasını şart koşun.</p><pre><code>    return attempt &lt;= limit</code></pre></article><article class="finding"><h3>HIGH: İade tutarı işlem tutarını aşabiliyor</h3><p><strong>Konum:</strong> <code>payment_rules.py:19</code> · <strong>Güven:</strong> 10/10</p><p><strong>Mevzuat:</strong> TEST_FIXTURE_NOT_LAW, sayfa 1</p><p>İşlev iade tutarını ilk işlem tutarıyla karşılaştırmıyor.</p><p><strong>Öneri:</strong> İade tutarının sıfırdan büyük ve ilk işlem tutarından küçük veya eşit olduğunu denetleyin.</p><pre><code>    return requested_amount &gt; 0</code></pre></article><article class="finding"><h3>MEDIUM: Başvuru numarası gizlenmiyor</h3><p><strong>Konum:</strong> <code>payment_rules.py:24</code> · <strong>Güven:</strong> 10/10</p><p><strong>Mevzuat:</strong> TEST_FIXTURE_NOT_LAW, sayfa 1</p><p>Gösterim işlevi başvuru numarasını değiştirmeden döndürüyor.</p><p><strong>Öneri:</strong> Yalnızca son karakterleri gösterip önceki karakterleri maskeleyin.</p><pre><code>    return reference</code></pre></article><article class="finding"><h3>LOW: İşlem ücreti hesaplanmıyor</h3><p><strong>Konum:</strong> <code>payment_rules.py:29</code> · <strong>Güven:</strong> 9/10</p><p><strong>Mevzuat:</strong> TEST_FIXTURE_NOT_LAW, sayfa 1</p><p>Ücret oranı hesaplamada kullanılmıyor.</p><p><strong>Öneri:</strong> Tutarı ücret oranıyla çarparak işlem ücretini hesaplayın.</p><pre><code>    return amount</code></pre></article></section>
+<section><h2>Dosya sonuçları</h2>
+<table><thead><tr><th>Dosya</th><th>Durum</th><th>Açıklama</th></tr></thead>
+<tbody><tr><td><code>payment_rules.py</code></td><td>Tarandı</td><td>None</td></tr></tbody></table>
+</section>
+<section><h2>Sınırlamalar</h2><ul><li>Yalnızca test için sentetik veri; gerçek mevzuat tespiti veya hukukî görüş değildir.</li></ul></section>
+</body>
+</html>
